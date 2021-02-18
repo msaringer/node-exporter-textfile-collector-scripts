@@ -188,7 +188,8 @@ for device in ${device_list}; do
   case ${type} in
   sat) /opt/ooce/sbin/smartctl -A -d "${type}" "${disk}" | parse_smartctl_attributes "${disk}" "${type}" ;;
   sat+megaraid*) /opt/ooce/sbin/smartctl -A -d "${type}" "${disk}" | parse_smartctl_attributes "${disk}" "${type}" ;;
-  scsi) /opt/ooce/sbin/smartctl -A -d "${type}" "${disk}" | parse_smartctl_scsi_attributes "${disk}" "${type}" ;;
+  ## don't scan scsi to avoid ESXi issue
+  ## scsi) /opt/ooce/sbin/smartctl -A -d "${type}" "${disk}" | parse_smartctl_scsi_attributes "${disk}" "${type}" ;;
   megaraid*) /opt/ooce/sbin/smartctl -A -d "${type}" "${disk}" | parse_smartctl_scsi_attributes "${disk}" "${type}" ;;
   nvme*) /opt/ooce/sbin/smartctl -A -d "${type}" "${disk}" | parse_smartctl_scsi_attributes "${disk}" "${type}" ;;
   *)
