@@ -179,7 +179,6 @@ for device in ${device_list}; do
   echo "smartctl_run{disk=\"${disk}\",type=\"${type}\"}" "$(TZ=UTC date '+%s')"
   # Only check SATA drives
   if [[ "$type" == "sat" ]]; then
-  echo "${disk}" is "${type}"
   # Check if the device is in a low-power mode
   /opt/ooce/sbin/smartctl -n standby -d "${type}" "${disk}" > /dev/null || active=0
   echo "device_active{disk=\"${disk}\",type=\"${type}\"}" "${active}"
